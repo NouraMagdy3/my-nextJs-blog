@@ -25,7 +25,7 @@ const PostPage = async ({ params }) => {
           alt="Picture of the post"
           style={{ width: "100%", height: "350px" }}
         />
-        <Suspense fallback={<h4>Loading...</h4>}>
+        <Suspense fallback={<h4>wait...</h4>}>
           <PostDetails postId={postId} />
         </Suspense>
       </div>
