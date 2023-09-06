@@ -1,95 +1,70 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import Image from "next/image";
+import postImg from "./images/postImg.png";
+import styles from "./page.module.css";
+import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/posts/?_limit=15",
+    {
+      next: {
+        revalidate: 120,
+      },
+    }
+  );
+  const posts = await response.json();
+
+  const postsJSX = posts.map((post) => {
+    return (
+      <div>
+        <Image
+          src={postImg}
+          alt="Picture of the post"
+          layout="responsive"
+        />
+        <section>
+          <h4 className={styles.description}>
+            <Link href={`${post.id}`}>{post.title}</Link>
+          </h4>
+          <p className={styles.description}>{post.body}</p>
+        </section>
+      </div>
+    );
+  });
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
+        <p
+          style={{
+            fontWeight: "700",
+            marginBottom: "20px",
+          }}
+        >
+          Ixartz’s Posts
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+        <span
+          style={{
+            fontWeight: "300",
+            fontSize: "15px",
+          }}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+          bibendum.
+        </span>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+      <div
+        className={styles.description}
+        style={{
+          marginTop: "70px",
+        }}
+      >
+        {postsJSX}
       </div>
     </main>
-  )
+  );
 }
