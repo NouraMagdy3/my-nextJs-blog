@@ -8,7 +8,7 @@ const PostPage = async ({ params }) => {
 
   return (
     <div
-      className={styles.description}
+      className={styles.postCard}
       style={{
         marginTop: "110px",
         flexDirection: "column",

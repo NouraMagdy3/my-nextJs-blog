@@ -24,10 +24,10 @@ export default async function Home() {
           layout="responsive"
         />
         <section>
-          <h4 className={styles.description}>
+          <h4>
             <Link href={`${post.id}`}>{post.title}</Link>
           </h4>
-          <p className={styles.description}>{post.description}</p>
+          <p>{post.description}</p>
         </section>
       </div>
     );
@@ -59,7 +59,7 @@ export default async function Home() {
         </span>
       </div>
       <div
-        className={styles.description}
+        className={styles.postCard}
         style={{
           marginTop: "70px",
         }}
