@@ -16,19 +16,19 @@ export default async function Home() {
   const postsJSX = posts.photos.map((post) => {
     return (
       <div>
-        <Image
-          src={post.url}
-          alt="Picture of the post"
-          width={100}
-          height={200}
-          layout="responsive"
-        />
-        <section>
-          <h4>
-            <Link href={`${post.id}`}>{post.title}</Link>
-          </h4>
-          <p>{post.description}</p>
-        </section>
+        <Link href={`${post.id}`}>
+          <Image
+            src={post.url}
+            alt="Picture of the post"
+            width={100}
+            height={200}
+            layout="responsive"
+          />
+          <section>
+            <h4>{post.title}</h4>
+            <p>{post.description}</p>
+          </section>
+        </Link>
       </div>
     );
   });

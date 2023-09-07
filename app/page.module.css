@@ -37,7 +37,7 @@
   transform-origin: 50% 50%;
 }
 .postCard section {
-  padding: 1rem;
+  padding: 1.3rem;
 }
 .postCard section h4 {
   margin-bottom: 18px;
@@ -52,8 +52,9 @@
 }
 
 /* Mobile */
-@media (max-width: 700px) {
-  .postCard {
+@media (max-width: 927px) {
+  .postCard div {
     font-size: 0.8rem;
+    min-height: auto; 
   }
 }
