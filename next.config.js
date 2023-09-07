@@ -7,9 +7,7 @@ module.exports = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "api.slingacademy.com",
-        port: "",
-        pathname: "/public/sample-photos/**",
+        hostname: "*.slingacademy.com",
       },
     ],
   },

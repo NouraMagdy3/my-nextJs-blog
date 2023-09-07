@@ -14,7 +14,7 @@ const PostPage = async ({ params }) => {
         flexDirection: "column",
       }}
     >
-      <h3>post Details</h3>
+      <h3>Post Details</h3>
       <br></br>
       <Suspense fallback={<h4>wait...</h4>}>
         <PostDetails postId={postId} />
