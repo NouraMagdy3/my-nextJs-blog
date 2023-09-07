@@ -20,7 +20,7 @@
 .description div {
   width: 330px;
   margin-bottom: 60px;
-  min-height: 470px;
+  min-height: 440px;
   border-radius: var(--border-radius);
   background-color: #323f5397;
   overflow: hidden;
@@ -40,7 +40,7 @@
   padding: 1rem;
 }
 .description section h4 {
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 }
 .description p {
   font-size: 14px;

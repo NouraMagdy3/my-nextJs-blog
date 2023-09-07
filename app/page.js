@@ -1,11 +1,10 @@
 import Image from "next/image";
-import postImg from "./images/postImg.png";
 import styles from "./page.module.css";
 import Link from "next/link";
 
 export default async function Home() {
   const response = await fetch(
-    "https://jsonplaceholder.typicode.com/posts/?_limit=15",
+    "https://api.slingacademy.com/v1/sample-data/photos?offset=3&limit=15",
     {
       next: {
         revalidate: 120,
@@ -14,19 +13,21 @@ export default async function Home() {
   );
   const posts = await response.json();
 
-  const postsJSX = posts.map((post) => {
+  const postsJSX = posts.photos.map((post) => {
     return (
       <div>
         <Image
-          src={postImg}
+          src={post.url}
           alt="Picture of the post"
+          width={100}
+          height={200}
           layout="responsive"
         />
         <section>
           <h4 className={styles.description}>
             <Link href={`${post.id}`}>{post.title}</Link>
           </h4>
-          <p className={styles.description}>{post.body}</p>
+          <p className={styles.description}>{post.description}</p>
         </section>
       </div>
     );

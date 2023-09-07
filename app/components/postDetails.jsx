@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 const PostDetails = async ({ postId }) => {
   await new Promise((resolve) => {
@@ -8,7 +9,7 @@ const PostDetails = async ({ postId }) => {
   });
 
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/posts/${postId}`,
+    `https://api.slingacademy.com/v1/sample-data/photos/${postId}`,
     {
       next: {
         revalidate: 120,
@@ -18,10 +19,23 @@ const PostDetails = async ({ postId }) => {
   const post = await response.json();
 
   return (
-    <section>
-      <h4>{post.title}</h4>
-      <p>{post.body}</p>
-    </section>
+    <div
+      style={{
+        width: "50%",
+      }}
+    >
+      <Image
+        src={post.photo.url}
+        alt="Picture of the post"
+        width={800}
+        height={420}
+        objectFit="cover"
+      />
+      <section>
+        <h4>{post.photo.title}</h4>
+        <p>{post.photo.description}</p>
+      </section>
+    </div>
   );
 };
 
